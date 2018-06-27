@@ -1,3 +1,6 @@
 describe('page', () => {
-  it('works', () => {})
+  it('works', () => {
+    cy.visit('https://news.ycombinator.com');
+    cy.bla();
+  })
 })

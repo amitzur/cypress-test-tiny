@@ -11,6 +11,15 @@
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
+const express = require('express');
+const cors = require('cors');
+const app = express();
+app.use(cors());
+app.get('/', (_req, res) => res.sendStatus(200));
+app.listen(8585, () => {
+  console.log('server running');
+})
+
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config

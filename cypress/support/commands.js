@@ -37,3 +37,9 @@
 //       log.snapshot().end()
 //     })
 // })
+
+Cypress.Commands.add('bla', () => {
+  return fetch('http://localhost:8585').then(resp => {
+      console.log('resp', resp.status);
+    });
+});
