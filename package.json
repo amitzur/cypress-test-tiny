@@ -20,5 +20,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/cypress-io/cypress-test-tiny.git"
+  },
+  "dependencies": {
+    "cypress": "^3.1.0",
+    "express": "^4.16.4"
   }
 }

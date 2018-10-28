@@ -11,7 +11,26 @@
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
-module.exports = (on, config) => {
-  // `on` is used to hook into various events Cypress emits
-  // `config` is the resolved Cypress config
+const express = require('express');
+const psetTimeout = require('util').promisify(setTimeout);
+const app = express();
+
+// long waiting route
+app.get('/bla', async (req, res) => {
+  await psetTimeout(180000);
+  res.sendStatus(200);
+});
+
+const startServer = () => new Promise((resolve, reject) => {
+  const server = app.listen(7373, err => {
+    if (err) reject(err);
+    else resolve();
+  });
+
+  // very long node server timeout (to show OS doesn't time out)
+  server.timeout = 3600000;
+})
+
+module.exports = async (on, config) => {
+  await startServer();
 }
